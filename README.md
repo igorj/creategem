@@ -1,9 +1,11 @@
 # Creategem
 
 [![Gem Version](http://img.shields.io/gem/v/creategem.svg)][gem]
+[![Dependency Status](http://img.shields.io/gemnasium/igorj/creategem.svg)][gemnasium]
 [![Code Climate](http://img.shields.io/codeclimate/github/igorj/creategem.svg)][codeclimate]
 
 [gem]: https://rubygems.org/gems/creategem
+[gemnasium]: https://gemnasium.com/igorj/creategem
 [codeclimate]: https://codeclimate.com/github/igorj/creategem
 
 Creategem creates a scaffold project for a new gem that already has a remote repository (Github or Bitbucket) and is ready to be released in a private or public gem server.  
