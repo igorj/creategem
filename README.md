@@ -1,5 +1,7 @@
 # Creategem
 
+[![Gem Version](https://badge.fury.io/rb/creategem.png)](https://badge.fury.io/rb/creategem)
+
 Creategem creates a scaffold project for a new gem that already has a remote repository (Github or Bitbucket) and is ready to be released in a private or public gem server.  
  
 This project was inspired by the Bundler's `bundle gem GEM command and by the great article [Deveoping a RubyGem using Bundler](https://github.com/radar/guides/blob/master/gem-development.md) by @radar.
