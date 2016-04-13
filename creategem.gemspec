@@ -10,6 +10,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{Creategem creates a scaffold project for new gems. You can choose between Github and Bitbucket,
                           Rubygems or Geminabox, with executable or without, etc.}
   spec.homepage      = "https://github.com/igorj/creategem"
+  spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^test/}) }
   spec.bindir        = "exe"
