@@ -3,15 +3,15 @@
 <% if @repository.public? -%>
 [![Gem Version](http://img.shields.io/gem/v/<%= gem_name %>.svg)][gem]
 [![Build Status](http://img.shields.io/travis/igorj/<%= gem_name %>.svg)][travis]
-[![Dependency Status](http://img.shields.io/gemnasium/<%= repository.user %>/<%= gem_name %>.svg)][gemnasium]
-[![Code Climate](http://img.shields.io/codeclimate/github/<%= repository.user %>/<%= gem_name %>.svg)][codeclimate]
-[![Coverage Status](http://img.shields.io/coveralls/<%= repository.user %>/<%= gem_name %>.svg)][coveralls]
+[![Dependency Status](http://img.shields.io/gemnasium/<%= @repository.user %>/<%= gem_name %>.svg)][gemnasium]
+[![Code Climate](http://img.shields.io/codeclimate/github/<%= @repository.user %>/<%= gem_name %>.svg)][codeclimate]
+[![Coverage Status](http://img.shields.io/coveralls/<%= @repository.user %>/<%= gem_name %>.svg)][coveralls]
 
 [gem]: https://rubygems.org/gems/<%= gem_name %>
-[travis]: http://travis-ci.org/<%= repository.user %>/<%= gem_name %>
-[gemnasium]: https://gemnasium.com/<%= repository.user %>/<%= gem_name %>
-[codeclimate]: https://codeclimate.com/github/<%= repository.user %>/<%= gem_name %>
-[coveralls]: https://coveralls.io/r/<%= repository.user %>/<%= gem_name %>
+[travis]: http://travis-ci.org/<%= @repository.user %>/<%= gem_name %>
+[gemnasium]: https://gemnasium.com/<%= @repository.user %>/<%= gem_name %>
+[codeclimate]: https://codeclimate.com/github/<%= @repository.user %>/<%= gem_name %>
+[coveralls]: https://coveralls.io/r/<%= @repository.user %>/<%= gem_name %>
 <% end %>
 
 TODO Description of <%= @class_name %>
