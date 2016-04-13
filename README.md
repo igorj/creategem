@@ -1,10 +1,12 @@
 # Creategem
 
 [![Gem Version](http://img.shields.io/gem/v/creategem.svg)][gem]
+[![Build Status](http://img.shields.io/travis/igorj/creategem.svg)][travis]
 [![Dependency Status](http://img.shields.io/gemnasium/igorj/creategem.svg)][gemnasium]
 [![Code Climate](http://img.shields.io/codeclimate/github/igorj/creategem.svg)][codeclimate]
 
 [gem]: https://rubygems.org/gems/creategem
+[travis]: http://travis-ci.org/igorj/creategem
 [gemnasium]: https://gemnasium.com/igorj/creategem
 [codeclimate]: https://codeclimate.com/github/igorj/creategem
 
