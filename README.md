@@ -1,6 +1,6 @@
 # Creategem
 
-[![Gem Version](https://badge.fury.io/rb/creategem.png)](https://badge.fury.io/rb/creategem)
+[![Gem Version](https://badge.fury.io/rb/creategem@2x.png)](https://badge.fury.io/rb/creategem)
 
 Creategem creates a scaffold project for a new gem that already has a remote repository (Github or Bitbucket) and is ready to be released in a private or public gem server.  
  
