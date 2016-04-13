@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require 'creategem/cli'
+Creategem::CLI.start

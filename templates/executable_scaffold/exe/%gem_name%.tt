@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require '<%= @gem_name %>/cli'
+<%= @class_name %>::CLI.start

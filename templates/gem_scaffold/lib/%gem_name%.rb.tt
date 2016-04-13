@@ -1,0 +1,4 @@
+require '<%= @gem_name %>/version'
+
+module <%= @class_name %>
+end

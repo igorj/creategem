@@ -1,0 +1,7 @@
+require 'test_helper'
+
+class <%= @class_name %>Test < Minitest::Test
+  def test_that_it_has_a_version_number
+    refute_nil ::<%= @class_name %>::VERSION
+  end
+end
