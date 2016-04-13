@@ -4,11 +4,13 @@
 [![Build Status](http://img.shields.io/travis/igorj/creategem.svg)][travis]
 [![Dependency Status](http://img.shields.io/gemnasium/igorj/creategem.svg)][gemnasium]
 [![Code Climate](http://img.shields.io/codeclimate/github/igorj/creategem.svg)][codeclimate]
+[![Coverage Status](http://img.shields.io/coveralls/igorj/creategem.svg)][coveralls]
 
 [gem]: https://rubygems.org/gems/creategem
 [travis]: http://travis-ci.org/igorj/creategem
 [gemnasium]: https://gemnasium.com/igorj/creategem
 [codeclimate]: https://codeclimate.com/github/igorj/creategem
+[coveralls]: https://coveralls.io/r/igorj/creategem
 
 Creategem creates a scaffold project for a new gem that already has a remote repository (Github or Bitbucket) and is ready to be released in a private or public gem server.  
  
