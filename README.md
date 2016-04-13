@@ -20,10 +20,11 @@ Similar to what Bundler's bundle gem command does, this gem generates a scaffold
  
 Features:
 - automatically creates local and remote git repository (bitbucket or github) for your gem 
-- automatically release patches, minor and major versions without having to manually increase versions (thanks to [gem-release](https://github.com/svenfuchs/gem-release))
+- rake tasks to release patches, minor and major versions without having to manually increase versions (thanks to [gem-release](https://github.com/svenfuchs/gem-release))
 - executable based on [Thor](http://whatisthor.com) (can be omited with --no-executable)
-- test infrastructure based on minitest
+- test infrastructure based on minitest and minitest-reporters
 - release to rubygems.org or to private geminabox gem server
+- readme with badges for travis, codeclimate, coveralls, etc. for public projects
  
 
 ## Installation
