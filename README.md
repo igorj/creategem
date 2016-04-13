@@ -27,11 +27,11 @@ When called without any options it is assumed that you want a gem with an execut
     
 During the creation you will be asked for your bitbucket user name and the url of your geminabox gem server (only the first time, as the user name and the gem server url are saved in your git global config). You will also be asked to enter your bitbucket password when the remote repository is created for you with the bitbucket rest api. 
     
-When you use the --public option a github repository is created for the gem and on release the gem is pushed to rubygems.org. 
+When you use the `--public` option a github repository is created for the gem and on release the gem is pushed to rubygems.org. 
     
 During the creation you will be asked for your github user name (only the first time, as the user name is saved in your git global config). You will also be asked to enter your github password when the remote repository is created for you with the github rest api.     
 
-Per default a gem is created with an executable based on Thor, but you can omit the executable with the option --no-executable. 
+Per default a gem is created with an executable based on Thor, but you can omit the executable with the option `--no-executable`. 
 
 After you create the gem, edit your gemspec and change the summary and the description, commit the changes to git and invoke `rake release_patch` and your gem is being released. 
 
