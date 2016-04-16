@@ -22,5 +22,29 @@ module Creategem
       say "Push initial commit to remote #{repository.vendor} repository", :green
       run "git push -u origin master"
     end
+
+    def git_repository_user_name(vendor)
+      git_config_key = "creategem.#{vendor}user"
+      user = ::Git.global_config(git_config_key)
+      if user.nil? || user.empty?
+        user = ask("What is your #{vendor} user name?")
+        ::Git.global_config(git_config_key, user)
+      end
+      user
+    end
+
+    def gem_server_url(vendor)
+      if vendor == :github
+        "https://rubygems.org"
+      else
+        git_config_key = "creategem.gemserver"
+        url = ::Git.global_config(git_config_key)
+        if url.nil? || url.empty?
+          url = ask("What is the url of your geminabox server?")
+          ::Git.global_config(git_config_key, url)
+        end
+        url
+      end
+    end
   end
 end
