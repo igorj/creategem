@@ -1,3 +1,4 @@
+require 'thor'
 require 'git'
 require 'creategem'
 
