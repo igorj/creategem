@@ -12,15 +12,15 @@
 [codeclimate]: https://codeclimate.com/github/igorj/creategem
 [coveralls]: https://coveralls.io/r/igorj/creategem
 
-Creategem creates a scaffold project for a new gem together with remote repository (Github or Bitbucket) which is immediately ready to be released in a private or public gem server.  
+Creategem creates a scaffold project for a new gem together with remote repository (Github or Bitbucket) and is ready to be released in a public or private gem server.  
  
 This project is inspired by the [Bundler](http://bundler.io)'s `bundle gem GEM` command and by the great article [Deveoping a RubyGem using Bundler](https://github.com/radar/guides/blob/master/gem-development.md).
 
 Similar to what Bundler's bundle gem command does, this gem generates a scaffold with all files you need to start, but it also has some additional features.
  
 Features:
-- automatically creates local and remote git repository (bitbucket or github) for your gem 
-- rake tasks to release patches, minor and major versions without having to manually increase versions (thanks to [gem-release](https://github.com/svenfuchs/gem-release))
+- automatically creates local and remote git repository (github or bitbucket) for your gem 
+- automatically release patches, minor and major versions without having to manually increase versions (thanks to [gem-release](https://github.com/svenfuchs/gem-release))
 - executable based on [Thor](http://whatisthor.com) (can be omited with --no-executable)
 - test infrastructure based on minitest and minitest-reporters
 - release to rubygems.org or to private geminabox gem server
@@ -34,15 +34,15 @@ Features:
 
 ## Usage
 
-    $ creategem gem GEM_NAME [--public] [--no-executable]
+    $ creategem gem GEM_NAME [--private] [--no-executable]
     
-When called without any options it is assumed that you want a gem with an executable and hosted in a private bitbucket git repository, and released on a private Geminabox server. 
+When called without any options it is assumed that you want a gem with an executable and hosted in a public github git repository, and released to rubygems.org. 
     
-During the creation you will be asked for your bitbucket user name and the url of your geminabox gem server (only the first time, as the user name and the gem server url are saved in your git global config). You will also be asked to enter your bitbucket password when the remote repository is created for you with the bitbucket rest api. 
+During the creation you will be asked for your github user name (only the first time, as the user name is saved in your git global config). You will also be asked to enter your github password when the remote repository is created for you with the github rest api. 
     
-When you use the `--public` option a github repository is created for the gem and on release the gem is pushed to rubygems.org. 
+When you use the `--private` option a bitbucket repository is created for the gem and on release the gem is pushed to a private Geminabox server. 
     
-During the creation you will be asked for your github user name (only the first time, as the user name is saved in your git global config). You will also be asked to enter your github password when the remote repository is created for you with the github rest api.     
+During the creation you will be asked for your bitbucket user name and the url of your geminabox gem server (only the first time, as the user name and the gem server url are saved in your git global config). You will also be asked to enter your bitbucket password when the remote repository is created for you with the bitbucket rest api.     
 
 Per default a gem is created with an executable based on Thor, but you can omit the executable with the option `--no-executable`. 
 

@@ -16,15 +16,15 @@ module Creategem
       File.expand_path('../../../templates', __FILE__)
     end
 
-    desc "gem NAME", "Creates a new gem with a given NAME with Bitbucket git repository and private geminabox gem repository; Options: --public (Github/Rubygems), --no-executable"
-    option :public, type: :boolean, default: false, desc: "When true, Github and Rubygems are used, otherwise Bitbucket and Geminabox are used (default)"
+    desc "gem NAME", "Creates a new gem with a given NAME with Github git repository; Options: --private (Bitbucket/Geminabox), --no-executable"
+    option :private, type: :boolean, default: false, desc: "When true, Bitbucket and Geminabox are used, otherwise Github and Rubygems are used (default)"
     option :executable, type: :boolean, default: true, desc: "When true, gem with executable is created"
     def gem(gem_name)
       say "Create a gem scaffold for gem named: #{gem_name}", :green
       @gem_name = gem_name
       @class_name = Thor::Util.camel_case(gem_name)
       @executable = options[:executable]
-      vendor = options[:public] ? :github : :bitbucket
+      vendor = options[:private] ? :bitbucket : :github
       @repository = Creategem::Repository.new(vendor: vendor,
                                               user: git_repository_user_name(vendor),
                                               name: gem_name,
@@ -39,7 +39,7 @@ module Creategem
       Dir.chdir gem_name do
         create_local_git_repository
         run "bundle install"
-        create_remote_git_repository(@repository)
+        create_remote_git_repository(@repository) if yes?("Do you want me to create #{vendor} repository named #{gem_name}? (y/n)")
       end
       say "The gem #{gem_name} was successfully created.", :green
       say "Please complete the information in #{gem_name}.gemspec and README.md (look for TODOs).", :blue
