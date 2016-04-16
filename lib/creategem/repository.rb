@@ -1,3 +1,5 @@
+require 'git'
+
 # Creategem::Repository contains informations about the git repository and the git user
 module Creategem
   class Repository
