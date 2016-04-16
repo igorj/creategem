@@ -30,7 +30,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest-reporters", "~> 1.1"
   spec.add_development_dependency "gem-release", "~> 0.7"
   spec.add_development_dependency "geminabox", "~> 0.13"
-<% if @executable -%>
+<% if @repository.public? -%>
+  spec.add_development_dependency "coveralls"
+<% end %>
+<% if @executable %>
   spec.add_dependency "thor", "~> 0.19"
 <% end %>
 end
