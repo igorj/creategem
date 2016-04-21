@@ -22,7 +22,7 @@ module Creategem
     def gem(gem_name)
       say "Create a gem scaffold for gem named: #{gem_name}", :green
       @gem_name = gem_name
-      @class_name = Thor::Util.camel_case(gem_name)
+      @class_name = Thor::Util.camel_case(gem_name.gsub("-", "_"))
       @executable = options[:executable]
       vendor = options[:private] ? :bitbucket : :github
       @repository = Creategem::Repository.new(vendor: vendor,
