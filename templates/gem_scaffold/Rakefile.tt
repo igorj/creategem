@@ -39,4 +39,4 @@ desc "Bump major version, create git tag, build the gem and release to geminabox
 task :release_major => [:test, :major, :publish]
 
 
-task :default => :test
+task default: :test

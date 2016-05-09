@@ -20,15 +20,36 @@ module Creategem
     option :private, type: :boolean, default: false, desc: "When true, Bitbucket and Geminabox are used, otherwise Github and Rubygems are used (default)"
     option :executable, type: :boolean, default: true, desc: "When true, gem with executable is created"
     def gem(gem_name)
+      create_gem_scaffold(gem_name)
+      initialize_repository(gem_name)
+    end
+
+    desc "plugin NAME", "Creates a new rails plugin with a given NAME with Github git repository; Options: --private (Bitbucket/Geminabox), --executable, --engine, --mountable"
+    option :private, type: :boolean, default: false, desc: "When true, Bitbucket and Geminabox are used, otherwise Github and Rubygems are used (default)"
+    option :engine, type: :boolean, default: false, desc: "When true, gem with rails engine is created"
+    option :mountable, type: :boolean, default: false, desc: "When true, gem with mountable rails engine is created"
+    option :executable, type: :boolean, default: false, desc: "When true, gem with executable is created"
+    def plugin(gem_name)
+      @plugin = true
+      @engine = options[:engine]
+      @mountable = options[:mountable]
+      create_gem_scaffold(gem_name)
+      create_plugin_scaffold(gem_name)
+      initialize_repository(gem_name)
+    end
+
+    private
+
+    def create_gem_scaffold(gem_name)
       say "Create a gem scaffold for gem named: #{gem_name}", :green
       @gem_name = gem_name
       @class_name = Thor::Util.camel_case(gem_name.gsub("-", "_"))
       @executable = options[:executable]
-      vendor = options[:private] ? :bitbucket : :github
-      @repository = Creategem::Repository.new(vendor: vendor,
-                                              user: git_repository_user_name(vendor),
+      @vendor = options[:private] ? :bitbucket : :github
+      @repository = Creategem::Repository.new(vendor: @vendor,
+                                              user: git_repository_user_name(@vendor),
                                               name: gem_name,
-                                              gem_server_url: gem_server_url(vendor))
+                                              gem_server_url: gem_server_url(@vendor))
       directory "gem_scaffold", gem_name
       if @executable
         directory "executable_scaffold", gem_name
@@ -36,10 +57,18 @@ module Creategem
       if @repository.public?
         template "LICENCE.txt", "#{gem_name}/LICENCE.txt"
       end
+    end
+
+    def create_plugin_scaffold(gem_name)
+      say "Create a rails plugin scaffold for gem named: #{gem_name}", :green
+      directory "plugin_scaffold", gem_name
+    end
+
+    def initialize_repository(gem_name)
       Dir.chdir gem_name do
         create_local_git_repository
         run "bundle install"
-        create_remote_git_repository(@repository) if yes?("Do you want me to create #{vendor} repository named #{gem_name}? (y/n)")
+        create_remote_git_repository(@repository) if yes?("Do you want me to create #{@vendor} repository named #{gem_name}? (y/n)")
       end
       say "The gem #{gem_name} was successfully created.", :green
       say "Please complete the information in #{gem_name}.gemspec and README.md (look for TODOs).", :blue
