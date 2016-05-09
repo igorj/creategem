@@ -3,11 +3,11 @@
 /Gemfile.lock
 /_yardoc/
 /coverage/
+/test/coverage/
 /doc/
 /pkg/
 /spec/reports/
 /tmp/
-/test/coverage/
 
 <% if @plugin -%>
 test/dummy/db/*.sqlite3
