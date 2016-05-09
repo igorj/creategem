@@ -35,6 +35,7 @@ module Creategem
       @mountable = options[:mountable]
       create_gem_scaffold(gem_name)
       create_plugin_scaffold(gem_name)
+      create_engine_scaffold(gem_name)
       initialize_repository(gem_name)
     end
 
@@ -62,6 +63,11 @@ module Creategem
     def create_plugin_scaffold(gem_name)
       say "Create a rails plugin scaffold for gem named: #{gem_name}", :green
       directory "plugin_scaffold", gem_name
+    end
+
+    def create_engine_scaffold(gem_name)
+      say "Create a rails engine scaffold for gem named: #{gem_name}", :green
+      directory "engine_scaffold", gem_name
     end
 
     def initialize_repository(gem_name)

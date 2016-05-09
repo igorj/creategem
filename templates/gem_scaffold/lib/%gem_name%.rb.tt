@@ -1,4 +1,7 @@
 require '<%= @gem_name %>/version'
+<% if @engine -%>
+require '<%= @gem_name %>/engine'
+<% end %>
 
 module <%= @class_name %>
 end
