@@ -73,7 +73,9 @@ module Creategem
     def initialize_repository(gem_name)
       Dir.chdir gem_name do
         create_local_git_repository
-        run "bundle install"
+        run "bundle update"
+        run "chmod +x bin/*"
+        run "chmod +x exe/*" if @executable
         create_remote_git_repository(@repository) if yes?("Do you want me to create #{@vendor} repository named #{gem_name}? (y/n)")
       end
       say "The gem #{gem_name} was successfully created.", :green
