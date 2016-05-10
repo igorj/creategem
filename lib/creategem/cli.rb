@@ -35,8 +35,8 @@ module Creategem
       @mountable = options[:mountable]
       create_gem_scaffold(gem_name)
       create_plugin_scaffold(gem_name)
-      create_engine_scaffold(gem_name)
-      create_mountable_scaffold(gem_name)
+      create_engine_scaffold(gem_name) if @engine
+      create_mountable_scaffold(gem_name) if @mountable
       initialize_repository(gem_name)
     end
 
