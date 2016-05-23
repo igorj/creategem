@@ -64,6 +64,9 @@ module Creategem
     def create_plugin_scaffold(gem_name)
       say "Create a rails plugin scaffold for gem named: #{gem_name}", :green
       directory "plugin_scaffold", gem_name
+      Dir.chdir gem_name do
+        run "chmod +x test/dummy/bin/*"
+      end
     end
 
     def create_engine_scaffold(gem_name)
