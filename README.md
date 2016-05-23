@@ -24,7 +24,7 @@ Features:
 - executable based on [Thor](http://whatisthor.com) (can be omited with --no-executable)
 - test infrastructure based on minitest and minitest-reporters
 - release to rubygems.org or to private geminabox gem server
-- readme with badges for travis, codeclimate, coveralls, etc. for public projects
+- readme with badges for travis, codeclimate, coveralls, etc. for public projects (like the badges you see above)
  
 
 ## Installation
@@ -48,6 +48,11 @@ Per default a gem is created with an executable based on Thor, but you can omit 
 
 After you create the gem, edit your gemspec and change the summary and the description, commit the changes to git and invoke `rake release_patch` and your gem is being released. 
 
+
+    $ creategem plugin GEM_NAME [--engine] [--mountable] [--private] [--executable]
+
+`creategem plugin` creates a rails plugin. You can also specify if the plugin should be an engine (`--engine`) or a mountable engine (`--mountable`). 
+    
 
 ## Development
 
