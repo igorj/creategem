@@ -5,10 +5,11 @@ module Creategem
   class Repository
     REPOSITORIES = { github: "github.com", bitbucket: "bitbucket.org" }
 
-    attr_reader :vendor, :name, :user, :user_name, :user_email, :gem_server_url
+    attr_reader :vendor, :name, :user, :user_name, :user_email, :gem_server_url, :private
 
     def initialize(options)
       @vendor = options[:vendor]
+      @private = options[:private]
       @name = options[:name]
       @user = options[:user]
       @user_name = ::Git.global_config "user.name"

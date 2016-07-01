@@ -20,10 +20,11 @@ Similar to what Bundler's bundle gem command does, this gem generates a scaffold
  
 Features:
 - automatically creates local and remote git repository (github or bitbucket) for your gem 
+- option to create private github and bitbucket repositories
 - automatically release patches, minor and major versions without having to manually increase versions (thanks to [gem-release](https://github.com/svenfuchs/gem-release))
 - executable based on [Thor](http://whatisthor.com) (can be omited with --no-executable)
 - test infrastructure based on minitest and minitest-reporters
-- release to rubygems.org or to private geminabox gem server
+- release to rubygems.org or to a private geminabox gem server
 - readme with badges for travis, codeclimate, coveralls, etc. for public projects (like the badges you see above)
  
 
@@ -34,22 +35,22 @@ Features:
 
 ## Usage
 
-    $ creategem gem GEM_NAME [--private] [--no-executable]
+    $ creategem gem GEM_NAME [--private] [--no-executable] [--bitbucket]
     
 When called without any options it is assumed that you want a gem with an executable and hosted in a public github git repository, and released to rubygems.org. 
     
-During the creation you will be asked for your github user name (only the first time, as the user name is saved in your git global config). You will also be asked to enter your github password when the remote repository is created for you with the github rest api. 
+During the creation you will be asked for your github or bitbucket user name (only the first time, as the user name is saved in your git global config). You will also be asked to enter your github or bitbucket password when the remote repository is created for you with the rest api. 
     
-When you use the `--private` option a bitbucket repository is created for the gem and on release the gem is pushed to a private Geminabox server. 
-    
-During the creation you will be asked for your bitbucket user name and the url of your geminabox gem server (only the first time, as the user name and the gem server url are saved in your git global config). You will also be asked to enter your bitbucket password when the remote repository is created for you with the bitbucket rest api.     
+When you use the `--private` option, a private github or bitbucket repository is created for the gem and on release the gem is pushed to a private geminabox server. During the creation you will be asked for the url of your geminabox gem server (only the first time, as the gem server url is saved in your git global config). 
 
+When you specify the `--bitbucket` option, a bitbucket repository is created instead of github (default) 
+    
 Per default a gem is created with an executable based on Thor, but you can omit the executable with the option `--no-executable`. 
 
 After you create the gem, edit your gemspec and change the summary and the description, commit the changes to git and invoke `rake release_patch` and your gem is being released. 
 
 
-    $ creategem plugin GEM_NAME [--engine] [--mountable] [--private] [--executable]
+    $ creategem plugin GEM_NAME [--engine] [--mountable] [--private] [--bitbucket] [--executable]
 
 `creategem plugin` creates a rails plugin. You can also specify if the plugin should be an engine (`--engine`) or a mountable engine (`--mountable`). 
     
