@@ -49,7 +49,7 @@ module Creategem
       @gem_name = gem_name
       @class_name = Thor::Util.camel_case(gem_name.gsub("-", "_"))
       @executable = options[:executable]
-      @vendor = options[:private] ? :bitbucket : :github
+      @vendor = options[:bitbucket] ? :bitbucket : :github
       @repository = Creategem::Repository.new(vendor: @vendor,
                                               user: git_repository_user_name(@vendor),
                                               name: gem_name,
