@@ -15,7 +15,7 @@ module Creategem
       say "Create remote #{repository.vendor} repository", :green
       if repository.github?
         token = ask("Please enter your Github personal access token", echo: false)
-        run "curl --request POST --user #{repository.user}:#{token} https://api.github.com/user/repos -d '{\"name\":\"#{repository.name}\", \"private\":\"#{repository.private?}\"}'"
+        run "curl --request POST --user #{repository.user}:#{token} https://api.github.com/user/repos -d '{\"name\":\"#{repository.name}\", \"private\":#{repository.private?}}'"
       else # bitbucket
         password = ask("Please enter yout Bitbucket password", echo: false)
         fork_policy = repository.public? ? "allow_forks" : "no_public_forks"
