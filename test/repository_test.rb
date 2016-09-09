@@ -4,6 +4,7 @@ class RepositoryTest < Minitest::Test
 
   def test_bitbucket
     repo = Creategem::Repository.new(vendor: :bitbucket,
+                                     private: true,
                                      user: 'maxmustermann',
                                      name: :testrepo,
                                      gem_server_url: "https://gems.mustermann.com")
