@@ -15,7 +15,7 @@ module Creategem
       say "Create remote #{repository.vendor} repository", :green
       if repository.github?
         token = ask("What is yout Github personal access token?")
-        run "curl --request POST --user #{repository.user}:#{token} https://api.github.com/user/repos --data name=#{repository.name} --data private=#{repository.private?}"
+        run "curl --request POST --user #{repository.user}:#{token} https://api.github.com/user/repos -d '{\"name\":\"#{repository.name}\", \"private\":\"#{repository.private}\"}'"
       else # bitbucket
         run "curl --request POST --user #{repository.user} https://api.bitbucket.org/1.0/repositories/ --data name=#{repository.name} --data scm=git --data is_private=#{repository.private}"
       end
