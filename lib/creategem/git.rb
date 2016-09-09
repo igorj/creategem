@@ -14,10 +14,12 @@ module Creategem
     def create_remote_git_repository(repository)
       say "Create remote #{repository.vendor} repository", :green
       if repository.github?
-        token = ask("What is yout Github personal access token?")
-        run "curl --request POST --user #{repository.user}:#{token} https://api.github.com/user/repos -d '{\"name\":\"#{repository.name}\", \"private\":\"#{repository.private}\"}'"
+        token = ask("Please enter your Github personal access token", echo: false)
+        run "curl --request POST --user #{repository.user}:#{token} https://api.github.com/user/repos -d '{\"name\":\"#{repository.name}\", \"private\":\"#{repository.private?}\"}'"
       else # bitbucket
-        run "curl --request POST --user #{repository.user} https://api.bitbucket.org/1.0/repositories/ --data name=#{repository.name} --data scm=git --data is_private=#{repository.private}"
+        password = ask("Please enter yout Bitbucket password", echo: false)
+        fork_policy = repository.public? ? "allow_forks" : "no_public_forks"
+        run "curl --request POST --user #{repository.user}:#{password} https://api.bitbucket.org/2.0/repositories/#{repository.user}/#{repository.name} -d '{\"scm\":\"git\", \"fork_policy\":\"#{fork_policy}\", \"is_private\":\"#{repository.private?}\"}'"
       end
       run "git remote add origin #{repository.origin}"
       say "Push initial commit to remote #{repository.vendor} repository", :green
