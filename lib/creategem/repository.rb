@@ -15,6 +15,7 @@ module Creategem
       @user_name = ::Git.global_config "user.name"
       @user_email = ::Git.global_config "user.email"
       @gem_server_url = options[:gem_server_url]
+      @private = options[:private]
     end
 
     def github?
@@ -27,7 +28,7 @@ module Creategem
 
     # this could change later. For now all private repositories are on bitbucket and all private ones on github
     def private?
-      bitbucket?
+      self.private
     end
 
     def public?

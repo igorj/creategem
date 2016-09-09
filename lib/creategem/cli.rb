@@ -16,23 +16,21 @@ module Creategem
       File.expand_path('../../../templates', __FILE__)
     end
 
-    desc "gem NAME", "Creates a new gem with a given NAME with Github git repository; Options: --private (Bitbucket/Geminabox), --no-executable"
-    option :private, type: :boolean, default: false, desc: "When true, Bitbucket and Geminabox are used, otherwise Github and Rubygems are used (default)"
+    desc "gem NAME", "Creates a new gem with a given NAME with Github git repository; Options: --private (Geminabox), --no-executable, --bitbucket"
+    option :private, type: :boolean, default: false, desc: "When true, gem is published in a private geminabox repository, otherwise gem is published to Rubygems (default)"
     option :executable, type: :boolean, default: true, desc: "When true, gem with executable is created"
-    option :github, type: :boolean, default: true, desc: "When true, Github remote repository is created (default)"
-    option :bitbucket, type: :boolean, default: false, desc: "When true, Bitbucket remote repository is created"
+    option :bitbucket, type: :boolean, default: false, desc: "When true, bitbucket repository is created, otherwise Github (default)"
     def gem(gem_name)
       create_gem_scaffold(gem_name)
       initialize_repository(gem_name)
     end
 
-    desc "plugin NAME", "Creates a new rails plugin with a given NAME with Github git repository; Options: --private (Bitbucket/Geminabox), --executable, --engine, --mountable"
-    option :private, type: :boolean, default: false, desc: "When true, Bitbucket and Geminabox are used, otherwise Github and Rubygems are used (default)"
+    desc "plugin NAME", "Creates a new rails plugin with a given NAME with Github git repository; Options: --private (Geminabox), --executable, --engine, --mountable, --bitbucket"
+    option :private, type: :boolean, default: false, desc: "When true, gem is published in a private geminabox repository, otherwise gem is published to Rubygems (default)"
     option :engine, type: :boolean, default: false, desc: "When true, gem with rails engine is created"
     option :mountable, type: :boolean, default: false, desc: "When true, gem with mountable rails engine is created"
     option :executable, type: :boolean, default: false, desc: "When true, gem with executable is created"
-    option :github, type: :boolean, default: true, desc: "When true, Github remote repository is created (default)"
-    option :bitbucket, type: :boolean, default: false, desc: "When true, Bitbucket remote repository is created"
+    option :bitbucket, type: :boolean, default: false, desc: "When true, bitbucket repository is created, otherwise Github (default)"
     def plugin(gem_name)
       @plugin = true
       @engine = options[:engine] || options[:mountable]
@@ -51,12 +49,12 @@ module Creategem
       @gem_name = gem_name
       @class_name = Thor::Util.camel_case(gem_name.gsub("-", "_"))
       @executable = options[:executable]
-      @vendor = options[:bitbucket] ? :bitbucket : :github
+      @vendor = options[:private] ? :bitbucket : :github
       @repository = Creategem::Repository.new(vendor: @vendor,
-                                              private: options[:private],
                                               user: git_repository_user_name(@vendor),
                                               name: gem_name,
-                                              gem_server_url: gem_server_url(options[:private]))
+                                              gem_server_url: gem_server_url(@vendor),
+                                              private: options[:private])
       directory "gem_scaffold", gem_name
       if @executable
         directory "executable_scaffold", gem_name
