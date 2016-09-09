@@ -1,5 +1,7 @@
+<% unless @repository.private? -%>
 require 'coveralls'
 Coveralls.wear!
+<% end %>
 
 <% unless @plugin -%>
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
